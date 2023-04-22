@@ -6,24 +6,24 @@
  */
 int main(void)
 {
-	int y, x;
+	int x, y;
 
-	for (y = 48; y <= 56; y++)
+	for (x = 0; x < 9; x++)
 	{
-		for (x = 49; x <= 57; x++)
+		for (y = x + 1; y < 10; y++)
 		{
-			if (x > y)
-			{
-				putchar(y);
-				putchar(x);
-				if (y != 49 || x != 57)
-				{
-					putchar(',');
-					putchar(' ');
-				}
-			}
+			putchar((x % 10) + '0');
+			putchar((y % 10) + '0');
+
+			if (x == 8 && y == 9)
+				continue;
+
+			putchar(',');
+			putchar(' ');
 		}
 	}
+
 	putchar('\n');
+
 	return (0);
 }
