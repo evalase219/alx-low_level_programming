@@ -25,6 +25,7 @@ void print_times_table(int n)
 					_putchar(' ');
 				if (z <= 9)
 					_putchar(' ');
+
 				if (x >= 100)
 				{
 					_putchar((z / 10) + '0');
@@ -36,6 +37,7 @@ void print_times_table(int n)
 				}
 				_putchar((z % 10) + '0');
 			}
+			_putchar('\n');
 		}
 	}
 }
