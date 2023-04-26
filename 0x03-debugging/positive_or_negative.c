@@ -1,35 +1,23 @@
 #include "main.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
 
 /**
- * main - evaluates whether a value n is positive or negative
- *
- * Description: Random allocation of number to a value n and
- * evaluates whether it is positive or negative
- *
- * Return: Always 0
+ * positive_or_negative - checks if the given number i is +, 0 or -
+ * @i: number to be checked
+ * Return: Nothing on success
  */
-int main(void)
+
+void positive_or_negative(int i)
 {
-	int n;
-
-	srand(time(0));
-	n = rand() - RAND_MAX / 2;
-
-	if (n > 2)
+	if (i > 0)
 	{
-		printf("%d is positive\n", n);
+		printf("%d is positive\n", i);
 	}
-	else if (n == 0)
+	else if (i == 0)
 	{
-		printf("%d is zero\n", n);
+		printf("%d is zero\n", i);
 	}
 	else
 	{
-		printf("%d is negative\n", n);
+		printf("%d is negative\n", i);
 	}
-
-	return (0);
 }
