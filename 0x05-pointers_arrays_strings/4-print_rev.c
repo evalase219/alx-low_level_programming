@@ -5,25 +5,20 @@
  * followed by a new line.
  * @s: The string to be printed.
  *
- * Return: No return
+ * Return: no return
  */
 void print_rev(char *s)
 {
 	int x = 0;
 
-	while (*s)
+	while (x >= 0)
 	{
-		s++;
+		if (s[x] == '\0')
+			break;
 		x++;
 	}
 
-	while (x)
-	{
-		s--;
-		_putchar(*s);
-		x++;
-	}
-
+	for (x--; x >= 0; x--)
+		_putchar(s[x]);
 	_putchar('\n');
 }
-
