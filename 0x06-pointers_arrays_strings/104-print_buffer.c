@@ -3,8 +3,8 @@
 
 /**
  * print_buffer - A function that prints a buffer.
- * @b: buffer to be printed.
- *@size: size of the buffer.
+ * @b: Buffer to be printed.
+ * @size: size of the buffer.
  *
  * Return: Nothing
  */
@@ -21,30 +21,30 @@ void print_buffer(char *b, int size)
 	}
 	while (l < size)
 	{
-		m = size - l < 10 ? size - l : 10;
-		printf("%.8x:", l);
-		for (n = 0; n < 10; n++)
+	m = size - l < 10 ? size - l : 10;
+	printf("%.8x: ", l);
+	for (n = 0; n < 10; n++)
+	{
+		if (n < m)
+			printf("%.2x", *(b + l + n));
+		else
+			printf(" ");
+		if (n % 2)
 		{
-			if (n < m)
-				printf("%.2x", *(b + l + n));
-			else
-				printf(" ");
-			if (n % 2)
-			{
-				printf(" ");
-			}
+			printf(" ");
 		}
-		for (n = 0; n < m; n++)
-		{
-			int c = *(b + l + n);
+	}
+	for (n = 0; n < m; n++)
+	{
+		int c = *(b + l + n);
 
-			if (c < 32 || c > 132)
-			{
-				c = '.';
-			}
-			printf("%c", c);
+		if (c < 32 || c > 132)
+		{
+			c = '.';
 		}
-		printf("\n");
-		l += 10;
+		printf("%c", c);
+	}
+	printf("\n");
+	l += 10;
 	}
 }
