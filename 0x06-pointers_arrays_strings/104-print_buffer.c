@@ -6,47 +6,46 @@
  * @b: Buffer to be printed.
  * @size: size of the buffer.
  *
- * Return: Nothing
+ * Return: void
  */
 void print_buffer(char *b, int size)
 {
-	int o, j, i;
+	int l, m, n;
 
-	o = 0;
+	l = 0;
 
 	if (size <= 0)
 	{
 		printf("\n");
 		return;
 	}
-	while (o < size)
+	while (l < size)
 	{
-	j = size - o < 10 ? size - o : 10;
-	printf("%08x: ", o);
-	for (i = 0; i < 10; i++)
-	{
-		if (i < j)
+		m = size - l < 10 ? size - l : 10;
+		printf("%08x: ", l);
+		for (n = 0; n < 10; n++)
 		{
-			printf("%02x", *(b + o + i));
+			if (n < m)
+				printf("%02x", *(b + l + n));
+			else
+				printf(" ");
+			if (n % 2)
+			{
+				printf(" ");
+			}
 		}
-		else
-			printf(" ");
-		if (i % 2)
+		printf(" ");
+		for (n = 0; n < m; n++)
 		{
-			printf(" ");
-		}
-	}
-	for (i = 0; i < j; j++)
-	{
-		int c = *(b + o + i);
+			int c = *(b + l + n);
 
-		if (c < 32 || c > 132)
-		{
-			c = '.';
+			if (c < 32 || c > 132)
+			{
+				c = '.';
+			}
+			printf("%c", c);
 		}
-		printf("%c", c);
-	}
-	printf("\n");
-	o += 10;
+		printf("\n");
+		l += 10;
 	}
 }
