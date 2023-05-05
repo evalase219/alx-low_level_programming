@@ -5,7 +5,6 @@
  * print_buffer - A function that prints a buffer.
  * @b: Buffer to be printed.
  * @size: size of the buffer
- * Return: void
  */
 void print_buffer(char *b, int size)
 {
@@ -39,8 +38,10 @@ void print_buffer(char *b, int size)
 			else
 				printf(".");
 		}
+
 		if (byte >= size)
 			continue;
+
 		printf("\n");
 	}
 
