@@ -4,41 +4,46 @@
 /**
  * print_buffer - A function that prints a buffer.
  * @b: Buffer to be printed.
- * @size: size of the buffer.
- *
+ * @size: size of the buffer
  * Return: void
  */
 void print_buffer(char *b, int size)
 {
-	int l, m, n;
+	int byte, index;
+
+	for (byte = 0; byte < size; byte += 10)
+	{
+		printf("%08x: ", byte);
+
+		for (index = 0; index < 10; index++)
+		{
+			if ((index + byte) >= size)
+				printf(" ");
+
+			else
+				printf("%02x", *(b + index + byte));
+
+			if ((index % 2) != 0 && index != 0)
+				printf(" ");
+		}
+
+		for (index = 0; index < 10; index++)
+		{
+			if ((index + byte) >= size)
+				break;
+
+			else if (*(b + index + byte) >= 31 &&
+					*(b + index + byte) <= 126)
+				printf("%c", *(b + index + byte));
+
+			else
+				printf(".");
+		}
+		if (byte >= size)
+			continue;
+		printf("\n");
+	}
 
 	if (size <= 0)
 		printf("\n");
-	else
-	{
-		for (l = 0; l < size; l += 10)
-		{
-			printf("%.8x: ", l);
-			for (m = l; m < l + 10; m++)
-			{
-				if (m % 2 == 0)
-					printf(" ");
-				if (m < size)
-					printf("%.2x", *(b + m));
-				else
-					printf(" ");
-			}
-			printf(" ");
-			for (n = l; n < l + 10; n++)
-			{
-				if (n >= size)
-					break;
-				if (*(b + n) < 32 || *(b + n) > 126)
-					printf("%c", '.');
-				else
-					printf("%c", *(b + n));
-			}
-			printf("\n");
-		}
-	}
 }
