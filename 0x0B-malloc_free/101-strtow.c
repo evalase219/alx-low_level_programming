@@ -1,68 +1,97 @@
-#include <stdlib.h>
 #include "main.h"
+#include <stdlib.h>
+
+int word_len(char *str);
+int count_word(char *str);
+char **strtow(char *str);
 
 /**
- * ch_free_grid - main entry
- * @grid: input
- * @height: input
+ * word_len - function that locates the index marking the end of the
+ * first word.
+ * @str: string to be located.
  *
- * Return: Nothing
+ * Return: return the index marking at the end of the initial word.
  */
-void ch_free_grid(char **grid, unsigned int height)
+int word_len(char *str)
 {
-	if (grid != NULL && height != 0)
+	int index = 0, len = 0;
+
+	while (*(str + index) && *(str + index) != ' ')
 	{
-		for (; height > 0; height--)
-			free(grid[height]);
-		free(grid[height]);
-		free(grid);
+		len++;
+		index++;
 	}
+	return (len);
 }
 
 /**
- * strtow - function that splits string into words.
- * @str: the string
+ * count_word - function that counts the number of words in a string.
+ * @str: string to be counted.
  *
- * Return: on success, return a pointer to an array of strings
- * on failure, return NULL.
+ * Return: return the number of word.
+ */
+int count_word(char *str)
+{
+	int index = 0, word = 0, len = 0;
+
+	for (index = 0; *(str + index); index++)
+		len++;
+	for (index = 0; index < len; index++)
+	{
+		if (*(str + index) != ' ')
+		{
+			word++;
+			index += word_len(str + index);
+		}
+	}
+	return (word);
+}
+
+/**
+ * strtow - function that splits a string into words.
+ * @str: string to split.
+ *
+ *
+ * Return: return str = NULL, str = '' or on failure NULL.NULL.
+ * if not pointer to an array of strings.
  */
 char **strtow(char *str)
 {
-	char **model;
-	unsigned int x, height, y, z, m;
+	char **strings;
+	int index = 0, word, m, alphabet, n;
 
-	if (str == NULL || *str == '\0')
+	if (str == NULL || str[0] == '\0')
 		return (NULL);
-	for (x = height = 0; str[x] != '\0'; x++)
-		if (str[x] != '\0' &&(str[x + 1] == '\0' || str[x + 1] == '\0'))
-			height++;
-	model = malloc((height + 1) * sizeof(char *));
-	if (model == NULL || height == 0)
+
+	word = count_word(str);
+	if (word == 0)
+		return (NULL);
+
+	strings = malloc(sizeof(char *) * (word + 1));
+		if (strings  == NULL)
+			return (NULL);
+
+	for (m = 0; m < word; m++)
 	{
-		free(model);
+		while (str[index] == ' ')
+			index++;
+	alphabet = word_len(str + index);
+
+	strings[m] = malloc(sizeof(char) * alphabet + 1);
+
+	if (strings[m] == NULL)
+	{
+		for (; m >= 0; m--)
+			free(strings[m]);
+
+		free(strings);
 		return (NULL);
 	}
-	for (y = m = 0; y < height; y++)
-	{
-		for (x = m; str[x] != '\0'; x++)
-		{
-			if (str[x] == '\0')
-				m++;
-		if (str[x] != '\0' &&(str[x + 1] ==  '\0' || str[x + 1] == '\0'))
-		{
-			model[y] = malloc((x - m + 2) * sizeof(char));
-			if (model[y] == NULL)
-			{
-				ch_free_grid(model, y);
-				return (NULL);
-			}
-			break;
-		}
-		}
-		for (z = 0; m  <= x; m++, z++)
-			model[y][z] = str[m];
-		model[y][z] = '\0';
+	for (n = 0; n < alphabet; n++)
+		strings[m][n] = str[index++];
+	strings[m][n] = '\0';
 	}
-	model[y] = NULL;
-	return (model);
+	strings[m] = NULL;
+
+	return (strings);
 }
