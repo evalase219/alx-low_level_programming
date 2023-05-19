@@ -66,12 +66,10 @@ int main(int argc, char *argv[])
 	l2 = _strlen(s2);
 	l = l1 + l2 + 1;
 	output = malloc(sizeof(int) * l);
-
 	if (!output)
 		return (1);
 	for (x = 0; x <= l1 + l2; x++)
 		output[x] = 0;
-
 	for (l1 = l1 - 1; l1 >= 0; l1--)
 	{
 		d1 = s1[l1] - '0';
@@ -86,7 +84,6 @@ int main(int argc, char *argv[])
 	if (multi > 0)
 		output[l1 + l2 + 1] += multi;
 	}
-
 	for (x = 0; x < l - 1; x++)
 	{
 	if (output[x])
