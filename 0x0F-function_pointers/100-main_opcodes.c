@@ -11,30 +11,29 @@
 int main(int argc, char *argv[])
 {
 	int x, y;
-	char *op;
+	char *opc = (char *) main;
 
 	if (argc != 2)
 	{
 		printf("Error\n");
 		exit(1);
 	}
-	x = atoi(argv[1]);
 
-	if (x < 0)
+	y = atoi(argv[1]);
+
+	if (y < 0)
 	{
 		printf("Error\n");
 		exit(2);
 	}
-	op = (char *)main;
 
-	for (y = 0; y < x; y++)
+	for (x = 0; x < y; x++)
 	{
-		if (y == x - 1)
-		{
-			printf("%02hhx\n", op[y]);
-			break;
-		}
-		printf("%02hhx", op[y]);
+		printf("%02x", opc[x] & 0xFF);
+		if (x != y - 1)
+			printf(" ");
 	}
+
+	printf("\n");
 	return (0);
-}
+ }
