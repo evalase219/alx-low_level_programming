@@ -1,16 +1,13 @@
 #include <stdio.h>
 
-/**
- * myStartupFun - apply the constructor attribute to StartupFun() so that
- * it is executed before main()
- */
-void myStartupFun(void)
-__attribute__((constructor));
+void first(void) __attribute__ ((constructor));
 
 /**
- * myStartupFun - implementation of myStartupFun
+ * first - prints a sentence before the main
+ * function is executed
  */
-void myStartupFun(void)
+
+void first(void)
 {
 	printf("You re beat! and yet, you must allow,\n");
 	printf("I bore my house upon my back!\n");
