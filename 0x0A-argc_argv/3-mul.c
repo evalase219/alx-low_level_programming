@@ -11,18 +11,18 @@
  */
 int main(int argc, char *argv[])
 {
-	int x, y, result = 1;
+	int num1, num2, result;
 
 	if (argc > 3 || argc < 3)
 	{
 		printf("Error\n");
 		return (1);
 	}
-	for (x = 1; x < argc; x++)
-	{
-		y = strtol(argv[x], NULL, 10);
-		result *= y;
-		printf("%d\n", result);
-	}
+
+	num1 = atoi(argv[1]);
+	num2 = atoi(argv[2]);
+	result = num1 * num2;
+	printf("%d\n", result);
+
 	return (result);
 }
