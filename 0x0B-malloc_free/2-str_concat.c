@@ -18,15 +18,15 @@ char *str_concat(char *s1, char *s2)
 		while (*a++)
 			x++;
 	else
-		s1 = " ";
+		s1 = "";
 	a = s2;
 	if (s1)
 		while (*a++)
 			y++;
 	else
-		s2 = " ";
+		s2 = "";
 
-	b = malloc(x + y + 1);
+	b = malloc(sizeof(char) * (x + y + 1));
 	if (!b)
 		return (NULL);
 	a = b;
