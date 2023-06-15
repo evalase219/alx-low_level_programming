@@ -18,21 +18,20 @@ int **alloc_grid(int width, int height)
 	if (width <= 0 || height <= 0)
 		return (NULL);
 
-	shape = malloc(height * sizeof(int));
+	shape = (int **) malloc(height * sizeof(int *));
 	if (shape == NULL)
 		return (NULL);
 
-	for (m = 0; m < height ; m++)
+	for (m = 0; m < height; m++)
 	{
-		shape[m] = malloc(width * sizeof(int));
+		shape[m] = (int *) malloc(width * sizeof(int));
 		if (shape[m] == NULL)
 		{
-			while (m >= 0)
-				free(shape[m--]);
+			while (m > 0)
+				free(shape[--m]);
 			free(shape);
 			return (NULL);
 		}
-
 		for (n = 0; n < width; n++)
 			shape[m][n] = 0;
 	}
