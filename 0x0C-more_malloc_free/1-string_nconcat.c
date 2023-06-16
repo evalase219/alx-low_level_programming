@@ -3,10 +3,10 @@
 #include "main.h"
 
 /**
- * string_nconcat - function that concatenates two strings
+ * string_nconcat - function that concatenates two strings.
  * @s1: the first string
  * @s2: the second string
- * @n: the number of bytes from s2 to concatenate to s1
+ * @n: the number of bytes from s2 to concatenates to s1
  *
  * Return: return a pointer to the resulting string
  */
@@ -28,6 +28,7 @@ char *string_nconcat(char *s1, char *s2, unsigned int n)
 		x = len1 + len2;
 	else
 		x = len1 + n;
+
 	str = malloc(sizeof(char) * (x + 1));
 	if (str == NULL)
 		return (NULL);
