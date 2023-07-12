@@ -48,7 +48,7 @@ int main(int argc, char *argv[])
 	int f, to, r, w;
 	char *buffer;
 
-	if (argc < 3 || argc > 3)
+	if (argc != 3)
 	{
 		dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
 		exit(97);
