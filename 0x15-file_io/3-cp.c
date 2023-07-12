@@ -28,7 +28,7 @@ char *create_buffer(char *file)
  */
 void close_file(int fd)
 {
-	int i ;
+	int i;
 
 	i = close(fd);
 	if (i == -1)
@@ -53,23 +53,24 @@ int main(int argc, char *argv[])
 		dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
 		exit(97);
 	}
-	do
-	{
 	buffer = create_buffer(argv[2]);
 	f = open(argv[1], O_RDONLY);
 	to = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
-	r = read(f, buffer, 1024 );
-	if (f == -1 || r == -1)
-	{
-		dprintf(STDERR_FILENO, "Error: Can't read to\n");
-                exit(98);
-	}
-	w = write(to, buffer, r);
-	if (to == -1 || w == -1)
-	{
-		dprintf(STDERR_FILENO, "Error: Can't write to\n");
-                        exit(99);
-	}
+	r = read(f, buffer, 1024);
+	do {
+		if (f == -1 || r == -1)
+		{
+			dprintf(STDERR_FILENO, "Error: Can't read to\n");
+				exit(98);
+		}
+		w = write(to, buffer, r);
+		if (to == -1 || w == -1)
+		{
+			dprintf(STDERR_FILENO, "Error: Can't write to\n");
+			exit(99);
+		}
+		r = read(f, buffer, 1024);
+		to = open(argv[2], O_WRONLY | O_APPEND);
 	} while (r > 0);
 	free(buffer);
 	close_file(f);
