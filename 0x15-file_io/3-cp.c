@@ -60,13 +60,15 @@ int main(int argc, char *argv[])
 	do {
 		if (f == -1 || r == -1)
 		{
-			dprintf(STDERR_FILENO, "Error: Can't read to\n");
-				exit(98);
+			dprintf(STDERR_FILENO, "Error: Can't read to %s\n", argv[1]);
+			free(buffer);
+			exit(98);
 		}
 		w = write(to, buffer, r);
 		if (to == -1 || w == -1)
 		{
-			dprintf(STDERR_FILENO, "Error: Can't write to\n");
+			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
+			free(buffer);
 			exit(99);
 		}
 		r = read(f, buffer, 1024);
