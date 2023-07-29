@@ -12,15 +12,15 @@ void close_file(int fd);
  */
 char *create_buffer(char *file)
 {
-	char *str;
+	char *buffer;
 
-	str = malloc(sizeof(char) * 1024);
-	if (str == NULL)
+	buffer = malloc(sizeof(char) * 1024);
+	if (buffer == NULL)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", file);
 			exit(99);
 	}
-	return (str);
+	return (buffer);
 }
 /**
  * close_file - function that closes a file
@@ -41,7 +41,7 @@ void close_file(int fd)
  * main - program that copies a file to another
  * @argc: number of argument
  * @argv: value of argument
- * Return: nothing
+ * Return: 0 on success
  */
 int main(int argc, char *argv[])
 {
